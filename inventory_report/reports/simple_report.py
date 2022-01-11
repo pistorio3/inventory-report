@@ -58,4 +58,4 @@ class SimpleReport:
         message3 = (
             f"{str_message3}{bigger_stock_company}"
         )
-        return f"{message1}\n{message2}\n{message3}"
+        return f"{message1}\n{message2}\n{message3}\n"
