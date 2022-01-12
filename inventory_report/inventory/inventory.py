@@ -3,6 +3,8 @@ from inventory_report.reports.complete_report import CompleteReport
 
 import json
 import csv
+import xmltodict
+import xml.etree.ElementTree as ET
 
 
 class Inventory:
@@ -23,3 +25,10 @@ class Inventory:
             if path.endswith("json"):
                 data = json.load(file)
                 return self.generate_report(data, method)
+
+            if path.endswith("xml"):
+                root = ET.parse(file).getroot()
+                data = xmltodict.parse(
+                    ET.tostring(root, encoding="utf8", method="xml")
+                )
+                return self.generate_report(data["dataset"]["record"], method)
